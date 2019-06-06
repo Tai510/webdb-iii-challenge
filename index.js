@@ -9,7 +9,7 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 
-server.get('/api/cohorts', (req, res) => {
+server.get('/api/cohort', (req, res) => {
     db("cohort")
     .then(cohorts => {
       res.status(200).json(cohorts)
@@ -20,7 +20,7 @@ server.get('/api/cohorts', (req, res) => {
     })
   });
 
-  server.post('/api/cohorts', (req, res) => {
+  server.post('/api/cohort', (req, res) => {
     db("cohort").insert(req.body, "id")
     .then(ids => {
       db("cohort")
@@ -34,7 +34,7 @@ server.get('/api/cohorts', (req, res) => {
     })
   });
 
-  server.get('/api/cohorts/:id', (req, res) => {
+  server.get('/api/cohort/:id', (req, res) => {
     db("cohort")
     .where({id: req.params.id})
     .first()
